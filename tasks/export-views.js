@@ -74,6 +74,7 @@ module.exports = function (gulp, config) {
 		const excludeFolders = [
 			config.nitro.view_partials_directory,
 			config.nitro.view_data_directory,
+			config.nitro.view_layouts_directory,
 			config.nitro.placeholders_directory
 		].map((item) => item.replace(`${config.nitro.view_directory}/`, ''));
 		let viewGlobs = [
@@ -85,7 +86,9 @@ module.exports = function (gulp, config) {
 			try {
 				fs.mkdirSync(config.exporter.dest);
 			} catch (e) {
-				console.error(e);
+				if ( e.code != 'EEXIST' ) {
+					console.error(e.message);
+				}
 			}
 
 			if (typeof views === 'object' && views.length) {
