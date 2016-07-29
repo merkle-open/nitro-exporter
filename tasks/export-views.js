@@ -26,7 +26,7 @@ module.exports = function (gulp, config) {
 	 * @returns {Any} The event stream .map return.
 	 */
 	function loadView(esi) {
-		return esi.map((file, callback) => {
+		return esi.map((file, cb) => {
 			const viewPath = path.relative('views', file.path);
 			let viewName = path.basename(viewPath, `.${config.nitro.view_file_extension}`);
 			let viewRoute = '';
@@ -54,13 +54,13 @@ module.exports = function (gulp, config) {
 					}));
 				});
 				Promise.all(promises).then(() => {
-					callback();
+					cb();
 				});
 			} else {
 				getView(
 					url,
 					dest,
-					callback
+					cb
 				);
 			}
 			return true;
@@ -86,7 +86,7 @@ module.exports = function (gulp, config) {
 			try {
 				fs.mkdirSync(config.exporter.dest);
 			} catch (e) {
-				if ( e.code != 'EEXIST' ) {
+				if (e.code !== 'EEXIST') {
 					console.error(e.message);
 				}
 			}
