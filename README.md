@@ -1,6 +1,9 @@
+This package hasn't been under active development since about Mai 2018. It still works with nitro versions < 4.0.0.  
+For projects from Nitro Version 4, please use the new [@nitro/exporter](https://www.npmjs.com/package/@nitro/exporter) package.
+
 # nitro-exporter
 
-With this package, Nitro can generate static exports of your project by using `npm run export`.
+With this package, [Nitro](https://www.npmjs.com/package/generator-nitro) < 4 can generate static exports of your project by using `npm run export`.
 
     $ npm run export
 
